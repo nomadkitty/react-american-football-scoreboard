@@ -8,7 +8,7 @@ function App() {
 
   const [homeScore, setHomeScore] = useState(0);
   const [awayScore, setAwayScore] = useState(0);
-
+  const [quater, setQuater] = useState(1);
 
   const handleScore = (team, score) => {
     if (team === 'home'){
@@ -30,13 +30,13 @@ function App() {
 
             <div className="home__score">{homeScore}</div>
           </div>
-          <div className="timer">00:03</div>
+          <div className="timer">00:05</div>
           <div className="away">
             <h2 className="away__name">Tigers</h2>
             <div className="away__score">{awayScore}</div>
           </div>
         </div>
-        <BottomRow />
+        <BottomRow quater={quater}/>
       </section>
       <section className="buttons">
         <div className="homeButtons">
@@ -47,6 +47,14 @@ function App() {
         <div className="awayButtons">
           <button className="awayButtons__touchdown" onClick={()=>handleScore('away', awayScore + 7)}>Away Touchdown</button>
           <button className="awayButtons__fieldGoal" onClick={()=>handleScore('away', awayScore + 3)}>Away Field Goal</button>
+        </div>
+        <div>
+          <button className="quaterButton" onClick={()=>{
+            if (quater < 4){
+              setQuater(quater + 1);}
+            else {
+              setQuater(1);
+            }}}>Quater</button>
         </div>
       </section>
     </div>
